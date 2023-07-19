@@ -10,16 +10,6 @@ root = Tk()
 root.title("Sports Information")
 root.geometry('800x500')
 
-class team:
-    def __init__(self, name, image, description):
-        self.name = name
-        self.image = image
-        self.description = description
-        
-def switch_teams():
-    print(var_select.get())
-
-
 #creating the main frames with column and rows
 root.grid_rowconfigure((0,1,2), weight=1)
 root.grid_columnconfigure((0,1,2), weight=1)
