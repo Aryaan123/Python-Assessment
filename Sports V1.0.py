@@ -8,11 +8,12 @@ from PIL import ImageTk, Image
 import json
 root = Tk()
 root.title("Sports Information")
-root.geometry('800x500')
+root.geometry('1920x1080')
 
 #creating the main frames with column and rows
 root.grid_rowconfigure((0,1,2), weight=1)
 root.grid_columnconfigure((0,1,2), weight=1)
+
 
 #create the main grids
 menu = Frame(root, bg='White', width=350, height=100, pady=3, highlightbackground="black", highlightthickness=2)
@@ -42,6 +43,11 @@ title.grid(row=0, column=1)
 
 text=tk.Text(width = 40, height=4, font=("Helvetica", 32))
 
+#Importing Logo
+#Posting the logo onto the GUI
+image = Label(logo, image = "")
+image.grid( row=0, column=0, sticky="ew")
+
 #This function will display the whole Spurs information
 def spurs():
     text_description = Label(description, text="""Tottenham Hotspur, commonly known as Spurs, is a professional football club based in North London, 
@@ -57,16 +63,14 @@ def spurs():
     \n Tottenham Hotspur became the first English club in the 20th century to win the league and cup
     \n double. One of the hallmarks of Tottenham Hotspurs success has been its commitment to nurturing 
     \n talent and playing attractive, attacking football. """, font=("Verdana", 12), fg='black', bg='white',anchor="w", justify="left")
-
     text_description.grid(row=1, column=0)
-#Importing Logo
+
     spurs_img = Image.open("Spurs.jpg")
-#Resizing the Logo itself
+    #Resizing the Logo itself
     resized_spurs = spurs_img.resize((110,220), Image.ANTIALIAS)
     new_spurs = ImageTk.PhotoImage(resized_spurs)
-#Posting the logo onto the GUI
-    image = Label(logo, image = new_spurs)
-    image.grid( row=0, column=0, sticky="ew")
+    image.configure(image=new_spurs)
+    image.image = new_spurs
 
 #This will display the starting XI of the team
     squad_description = Label(squad, text="Starting XI", font=("Time new Roman", 20), fg="black", bg="white", anchor="center")
@@ -74,21 +78,12 @@ def spurs():
     squad_list = Label(squad, text="""Hugo Lloris \n Davinson Sanchez  \n Eric Dier \n Cristian Romero \n Pedro Porro  \n Pierre-Emile Hojbjerg \n Ivan Perisic  \n Dejan kulusevski  \n James Maddison \n Son Heung-Min \n Harry Kane""", font=("Verdana",), fg="black", bg="white", anchor="center", padx=120)
     squad_list.grid(row=2, column=2)
 
+
 #This is the command to exit the window
 exit_button = Button(menu, text="Exit", command=root.destroy)
 exit_button.grid(column=0, row=0)
 
 
-def spurs_logo():
-    #Importing Logo
-    spurs_img = Image.open("Spurs.jpg")
-#Resizing the Logo itself
-    resized_spurs = spurs_img.resize((115,226), Image.ANTIALIAS)
-    new_spurs = ImageTk.PhotoImage(resized_spurs)
-#Posting the logo onto the GUI
-    image = Label(logo, image = new_spurs)
-    image.grid( row=0, column=0, sticky="ew")
-    
 
 def select_dropdown(event):
     selected_team = menu_var.get()
